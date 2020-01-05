@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GBI: <?php echo $page_title; ?> </title>
 
-    <link rel="stylesheet" href="<?php echo WWW_ROOT; ?>/stylesheets/staff.css" />
+    <link rel="stylesheet" href="<?php echo url_for("stylesheets/staff.css"); ?>" />
 </head>
 <body>
     <header>
@@ -17,8 +17,8 @@
 
     <navigation>
         <ul>
-            <li><a href="<?php echo WWW_ROOT; ?>/staff/index.php">Menu</a></li>
-            <li><a href="<?php echo WWW_ROOT; ?>/staff/pages/">Pages</a></li>
-            <li><a href="<?php echo WWW_ROOT; ?>/staff/subjects/">Subjects</a></li>
+            <li><a href="<?php echo url_for("staff/index.php"); ?>">Menu</a></li>
+            <li><a href="<?php echo url_for("/staff/pages/"); ?>">Pages</a></li>
+            <li><a href="<?php echo url_for("/staff/subjects/"); ?>">Subjects</a></li>
         </ul>
     </navigation>
