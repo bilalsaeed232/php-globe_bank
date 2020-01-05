@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GBI: <?php echo $page_title; ?> </title>
-    <base href="/php-globe_bank/public/">
 
-    <link rel="stylesheet" href="stylesheets/staff.css" />
+    <link rel="stylesheet" href="<?php echo WWW_ROOT; ?>/stylesheets/staff.css" />
 </head>
 <body>
     <header>
@@ -18,8 +17,8 @@
 
     <navigation>
         <ul>
-            <li><a href="staff/index.php">Menu</a></li>
-            <li><a href="staff/pages/">Pages</a></li>
-            <li><a href="staff/subjects/">Subjects</a></li>
+            <li><a href="<?php echo WWW_ROOT; ?>/staff/index.php">Menu</a></li>
+            <li><a href="<?php echo WWW_ROOT; ?>/staff/pages/">Pages</a></li>
+            <li><a href="<?php echo WWW_ROOT; ?>/staff/subjects/">Subjects</a></li>
         </ul>
     </navigation>

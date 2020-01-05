@@ -1,7 +1,6 @@
 <?php 
 // all initialization required by our application
 
-require_once('functions.php');
 
 //define global path constants
 define('PRIVATE_PATH', dirname(__FILE__));
@@ -10,5 +9,12 @@ define('SHARED_PATH', PRIVATE_PATH . '/shared/');
 define('PUBLIC_PATH', PROJECT_PATH . '/public/');
 
 
+//find the public root folder path dynamically
+$public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
+$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
+define('WWW_ROOT', $doc_root);
+
+
+require_once('functions.php');
 
 ?>
