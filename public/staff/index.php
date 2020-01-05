@@ -1,30 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GBI</title>
+<?php require_once('../../private/initialize.php'); ?>
 
-    <link rel="stylesheet" href="../stylesheets/staff.css" />
-</head>
-<body>
-    <header>
-        <h1>GBI Staff Area</h1>
-    </header>
+<?php include('../../private/shared/staff_header.php'); ?>
 
+<div id="content"></div>
 
-    <navigation>
-        <ul>
-            <li><a href="index.php">Menu</a></li>
-        </ul>
-    </navigation>
-
-    <div id="content"></div>
-
-
-    <footer>
-    &copy; <?php echo date('Y'); ?> Globe Bank
-    </footer>
-</body>
-</html>
+<?php include('../../private/shared/staff_footer.php'); ?>
