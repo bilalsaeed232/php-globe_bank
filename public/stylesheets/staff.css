@@ -91,23 +91,16 @@ table.list tr th {
 }
 
 /* Forms */
-
-dl {
-  clear: both;
-  overflow: hidden;
-  margin: 0.5em 0;
+form div {
+  margin: 1.4em;
 }
 
-dt {
-  float: left;
-  font-weight: bold;
-  width: 125px;
+form label {
+  display: inline-block;
+  margin-right: 1.5em;
 }
 
-dd {
-  float: left;
-  margin-left: 1em;
-}
+
 
 #operations {
   clear: both;

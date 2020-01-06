@@ -17,7 +17,7 @@
         <h1>Subjects</h1>
 
         <div class="actions">
-            <a href="" class="action">Create New Subject</a>
+            <a href="<?php echo url_for('/staff/subjects/new.php'); ?>" class="action">Create New Subject</a>
         </div>
 
         <table class="list">
@@ -38,7 +38,7 @@
                     <td><?php echo $subject['visible'] ? 'Yes': 'No'; //as we are not outputing it directly no need for escaping ?></td>
                     <td><?php echo h($subject['menu_name']); ?></td>
                     <td class="action"><a href="show.php?id=<?php echo h(u($subject['ID'])); ?>">View</a></td>
-                    <td class="action"><a href="">Edit</a></td>
+                    <td class="action"><a href="edit.php?id=<?php echo h(u($subject['ID'])); ?>">Edit</a></td>
                     <td class="action"><a href="">Delete</a></td>      
                 </tr>
             <?php } ?>
