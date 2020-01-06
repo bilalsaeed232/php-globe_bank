@@ -33,11 +33,11 @@
 
             <?php foreach($subjects as $subject) { ?>
                 <tr>
-                    <td><?php echo $subject['ID']; ?></td>
-                    <td><?php echo $subject['position']; ?></td>
-                    <td><?php echo $subject['visible'] ? 'Yes': 'No'; ?></td>
-                    <td><?php echo $subject['menu_name']; ?></td>
-                    <td class="action"><a href="show.php?id=<?php echo u($subject['ID']); ?>">View</a></td>
+                    <td><?php echo h($subject['ID']); ?></td>
+                    <td><?php echo h($subject['position']); ?></td>
+                    <td><?php echo $subject['visible'] ? 'Yes': 'No'; //as we are not outputing it directly no need for escaping ?></td>
+                    <td><?php echo h($subject['menu_name']); ?></td>
+                    <td class="action"><a href="show.php?id=<?php echo h(u($subject['ID'])); ?>">View</a></td>
                     <td class="action"><a href="">Edit</a></td>
                     <td class="action"><a href="">Delete</a></td>      
                 </tr>

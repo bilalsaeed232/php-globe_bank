@@ -33,11 +33,11 @@
             </tr>
             <?php foreach($pages as $page) { ?>
             <tr>
-                <td><?php echo $page['ID']; ?></td>
-                <td><?php echo $page['visible']; ?></td>
-                <td><?php echo $page['title']; ?></td>
-                <td><?php echo $page['content']; ?></td>
-                <td><a href="show.php?id=<?php echo u($page['ID']); ?>" class="action">View</a></td>
+                <td><?php echo h($page['ID']); ?></td>
+                <td><?php echo h($page['visible']); ?></td>
+                <td><?php echo h($page['title']); ?></td>
+                <td><?php echo h($page['content']); ?></td>
+                <td><a href="show.php?id=<?php echo h(u($page['ID'])); ?>" class="action">View</a></td>
                 <td><a href="" class="action">Edit</a></td>
                 <td><a href="" class="action">Delete</a></td>
             </tr>
