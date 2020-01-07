@@ -3,35 +3,33 @@
 <?php 
 
 if(!isset($_GET['id'])) {
-    redirect_to(url_for('/staff/subjects/index.php'));
+    redirect_to(url_for('/staff/pages/index.php'));
 }
 $id = $_GET['id'];
 
-$position = "";
+$title = "";
 $visible = "";
-$menu_name = "";
+$content = "";
 
 if(is_post_request()) {
-    $position = $_POST['position'];
+    $title = $_POST['title'];
     $visible = $_POST['visible'];
-    $menu_name = $_POST['menu_name'];
+    $content = $_POST['content'];
 }
 
 ?>
 
 
-<?php $page_title = "Edit Subject"; ?>
+<?php $page_title = "Edit Page"; ?>
 <?php include_once(SHARED_PATH . 'staff_header.php'); ?>
 
 <div id="content">
-    <h1>Edit Subject</h1>
-    <div class="subject edit">
+    <h1>Edit Page</h1>
+    <div class="page edit">
         <form action="" method="post">
             <div>
-                <label for="position">Position</label>
-                <select name="position" id="position">
-                    <option value="1">1</option>
-                </select>
+                <label for="title">title</label>
+                <input type="text" name="title" value="<?php echo $title; ?>">
             </div>
             <div>
                 <label for="visible">Visible</label>
@@ -39,16 +37,16 @@ if(is_post_request()) {
                 <input type="checkbox" name="visible" id="visible" value="1" <?php echo $visible ? "checked" : ""; ?>>
             </div>
             <div>
-                <label for="menu_name">Menu name</label>
-                <input type="text" name="menu_name" value="<?php echo $menu_name; ?>" >
+                <label for="content">Content</label>
+                <textarea name="content" cols=35 rows=5><?php echo $content; ?></textarea>
             </div>
             <div>
-                <input type="submit" value="Edit Subject">
+                <input type="submit" value="Edit Page">
             </div>
         </form>
     
     </div>
-    <a href="<?php echo url_for('staff/subjects/index.php'); ?>">&laquo; Go Back</a>
+    <a href="<?php echo url_for('staff/pages/index.php'); ?>">&laquo; Go Back</a>
 
 </div>
 

@@ -4,13 +4,13 @@
 
 
 if(is_post_request()) {
-    $position = $_POST['position'];
+    $title = $_POST['title'];
     $visible = $_POST['visible'];
-    $menu_name = $_POST['menu_name'];
+    $content = $_POST['content'];
 
-    echo "Position: " . $position . "<br/>";
+    echo "Title: " . $title . "<br/>";
     echo "Visible: " . $visible . "<br/>";
-    echo "Menu Name: ". $menu_name . "<br/>";
+    echo "Content: ". $content . "<br/>";
 }
  
 
@@ -18,18 +18,16 @@ if(is_post_request()) {
 
 
 
-<?php $page_title = "New Subject"; ?>
+<?php $page_title = "New Page"; ?>
 <?php include_once(SHARED_PATH . 'staff_header.php'); ?>
 
 <div id="content">
-    <h1>New Subject</h1>
-    <div class="subject new">
+    <h1>New Page</h1>
+    <div class="page new">
         <form action="" method="post">
             <div>
-                <label for="position">Position</label>
-                <select name="position" id="position">
-                    <option value="1">1</option>
-                </select>
+                <label for="title">title</label>
+                <input type="text" name="title" >
             </div>
             <div>
                 <label for="visible">Visible</label>
@@ -38,16 +36,16 @@ if(is_post_request()) {
                 <input type="checkbox" name="visible" id="visible" value="1">
             </div>
             <div>
-                <label for="menu_name">Menu name</label>
-                <input type="text" name="menu_name" >
+                <label for="content">Content</label>
+                <textarea  name="content" cols=35 rows=5 ></textarea>
             </div>
             <div>
-                <input type="submit" value="Create Subject">
+                <input type="submit" value="Create Page">
             </div>
         </form>
     
     </div>
-    <a href="<?php echo url_for('staff/subjects/index.php'); ?>">&laquo; Go Back</a>
+    <a href="<?php echo url_for('staff/pages/index.php'); ?>">&laquo; Go Back</a>
 </div>
 
 
