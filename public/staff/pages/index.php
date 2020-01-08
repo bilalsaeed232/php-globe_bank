@@ -37,7 +37,7 @@
                 <td><?php echo h($page['content']); ?></td>
                 <td><a href="show.php?id=<?php echo h(u($page['id'])); ?>" class="action">View</a></td>
                 <td><a href="edit.php?id=<?php echo h(u($page['id'])); ?>" class="action">Edit</a></td>
-                <td><a href="" class="action">Delete</a></td>
+                <td><a href="delete.php?id=<?php echo h(u($page['id'])); ?>" class="action">Delete</a></td>
             </tr>
             <?php } ?>
         </table>

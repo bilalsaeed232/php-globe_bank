@@ -2,18 +2,13 @@
 
 <?php
 
+    $subjects_set = find_all_subjects();
 
-if(is_post_request()) {
-    $title = $_POST['title'];
-    $visible = $_POST['visible'];
-    $content = $_POST['content'];
 
-    echo "Title: " . $title . "<br/>";
-    echo "Visible: " . $visible . "<br/>";
-    echo "Content: ". $content . "<br/>";
-}
- 
-
+    $result_set = find_all_pages();
+    //+1 because we are creating a new page
+    $page_count = mysqli_num_rows($result_set) + 1;
+    mysqli_free_result($result_set);
 ?>
 
 
@@ -24,10 +19,33 @@ if(is_post_request()) {
 <div id="content">
     <h1>New Page</h1>
     <div class="page new">
-        <form action="" method="post">
+        <form action="<?php echo url_for('/staff/pages/create.php'); ?>" method="post">
             <div>
-                <label for="title">title</label>
-                <input type="text" name="title" >
+                <label for="menu_name">Menu Name</label>
+                <input type="text" name="menu_name" />
+            </div>
+            <div>
+                <label for="subject_id">Subject</label>
+                <select name="subject_id" id="subject">
+                    <?php while($subject = mysqli_fetch_assoc($subjects_set)): ?>
+                        <option value="<?php echo $subject['id']; ?>">
+                            <?php echo $subject['menu_name']; ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+                <?php mysqli_free_result($subjects_set); ?>
+            </div>
+            <div>
+                <label for="position">Position</label>
+                <select name="position" id="position">
+                    <?php for($i = 1; $i <= $page_count; $i++): ?>
+                        <option value="<?php echo $i; ?>"
+                            <?php echo $i == $page_count ? "selected" : ""; ?>
+                        >
+                            <?php echo $i; ?>
+                        </option>
+                    <?php endfor; ?>
+                </select>
             </div>
             <div>
                 <label for="visible">Visible</label>

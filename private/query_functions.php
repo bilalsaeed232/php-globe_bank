@@ -122,11 +122,52 @@ function find_page_by_id($id){
     return $page;
 }
 
+function insert_page($page) {
+    global $db;
 
-function confirm_result_set($result_set) {
-    if(!$result_set) {
-        exit("Error executing query!");
+    $sql = "INSERT INTO pages (subject_id, menu_name, position, visible, content) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $page['subject_id'] . "', ";
+    $sql .= "'" . $page['menu_name'] . "', ";
+    $sql .= "'" . $page['position'] . "', ";
+    $sql .= "'" . $page['visible'] . "', ";
+    $sql .= "'" . $page['content'] . "' ";
+    $sql .= ") ";
+
+    $result_set = mysqli_query($db, $sql);
+    
+    if($result_set) {
+        return true;
+    } else {
+        mysqli_error();
+        db_disconnect($db);
+        exit;       
+    }
+ }
+
+
+
+ 
+function delete_page($id) {
+    global $db;
+
+    $sql = "DELETE FROM pages ";
+    $sql .= "WHERE id='" . $id . "'";
+
+    $result = mysqli_query($db, $sql);
+    if($result) {
+        return true;
+    } else {
+        //DELETE failed
+        mysqli_error($db);
+        db_disconnect($db);
+        exit;
     }
 }
-
+ 
+function confirm_result_set($result_set) {
+     if(!$result_set) {
+         exit("Error executing query!");
+     }
+ }
 ?>
