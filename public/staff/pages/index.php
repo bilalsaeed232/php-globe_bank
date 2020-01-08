@@ -19,6 +19,7 @@
             <tr>
                 <th>ID</th>
                 <th>Subject ID</th>
+                <th>Position</th>
                 <th>Visible</th>
                 <th>Title</th>
                 <th>Content</th>
@@ -30,6 +31,7 @@
             <tr>
                 <td><?php echo h($page['id']); ?></td>
                 <td><?php echo h($page['subject_id']); ?></td>
+                <td><?php echo h($page['position']); ?></td>
                 <td><?php echo h($page['visible']); ?></td>
                 <td><?php echo h($page['menu_name']); ?></td>
                 <td><?php echo h($page['content']); ?></td>

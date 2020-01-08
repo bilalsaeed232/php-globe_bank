@@ -15,7 +15,7 @@ function find_all_pages() {
     global $db;
 
     $sql = "SELECT * FROM pages ";
-    $sql .= "ORDER BY position ASC ";
+    $sql .= "ORDER BY subject_id, position ASC ";
 
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
