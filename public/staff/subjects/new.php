@@ -1,30 +1,12 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
-<?php
-
-
-if(is_post_request()) {
-    $position = $_POST['position'];
-    $visible = $_POST['visible'];
-    $menu_name = $_POST['menu_name'];
-
-    echo "Position: " . $position . "<br/>";
-    echo "Visible: " . $visible . "<br/>";
-    echo "Menu Name: ". $menu_name . "<br/>";
-}
- 
-
-?>
-
-
-
 <?php $page_title = "New Subject"; ?>
 <?php include_once(SHARED_PATH . 'staff_header.php'); ?>
 
 <div id="content">
     <h1>New Subject</h1>
     <div class="subject new">
-        <form action="" method="post">
+        <form action="<?php echo url_for('staff/subjects/create.php'); ?>" method="post">
             <div>
                 <label for="position">Position</label>
                 <select name="position" id="position">

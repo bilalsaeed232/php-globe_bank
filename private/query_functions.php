@@ -11,6 +11,29 @@ function find_all_subjects() {
     return $result;
 }
 
+function insert_subject($subject) {
+    global $db;
+    
+    $sql = "INSERT INTO subjects (menu_name, visible, position) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $subject['menu_name'] . "', ";
+    $sql .= "'" . $subject['visible'] . "', ";
+    $sql .= "'" . $subject['position'] . "' ";
+    $sql .= ")";
+
+    $result = mysqli_query($db, $sql);
+
+    if($result) {
+        $insert_id = mysqli_insert_id($db);
+        return $insert_id;
+    } else {
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit("Error inserting new subject");
+    }
+
+}
+
 function find_all_pages() {
     global $db;
 

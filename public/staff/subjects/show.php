@@ -3,6 +3,14 @@
 <?php
 // no need to urldecode as php automatically do it in super global variables
 $id = h($_GET['id']); 
+
+if(is_get_request()) {
+    
+}else {
+    exit("No need to post here...");
+}
+
+
 ?>
 
 <?php $page_title = "Show Subject"; ?>
