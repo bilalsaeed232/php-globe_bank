@@ -41,6 +41,7 @@ function insert_subject($subject) {
         $insert_id = mysqli_insert_id($db);
         return $insert_id;
     } else {
+        //INSERT failed
         echo mysqli_error($db);
         db_disconnect($db);
         exit;
@@ -64,11 +65,34 @@ function update_subject($subject) {
     if($result) {
         return true;
     } else {
+        //UPDATE failed
         echo mysqli_error($db);
         db_disconnect($db);
         exit;
     }
 }
+
+function delete_subject($id) {
+    global $db;
+
+    $sql = "DELETE FROM subjects ";
+    $sql .= "WHERE id = '" . $id . "' ";
+    $sql .= "LIMIT 1";
+
+    $result = mysqli_query($db, $sql);
+    if($result) {
+        return true;
+    } else {
+        // DELETE failed
+        mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
+
+
+
+
 
 function find_all_pages() {
     global $db;

@@ -36,7 +36,7 @@
                     <td><?php echo h($subject['menu_name']); ?></td>
                     <td class="action"><a href="show.php?id=<?php echo h(u($subject['id'])); ?>">View</a></td>
                     <td class="action"><a href="edit.php?id=<?php echo h(u($subject['id'])); ?>">Edit</a></td>
-                    <td class="action"><a href="">Delete</a></td>      
+                    <td class="action"><a href="delete.php?id=<?php echo h(u($subject['id'])); ?>">Delete</a></td>      
                 </tr>
             <?php } ?>
         </table>
