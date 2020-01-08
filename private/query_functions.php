@@ -108,6 +108,20 @@ function find_all_pages() {
     return $result;
 }
 
+function find_page_by_id($id){
+    global $db;
+
+    $sql = "SELECT * FROM pages ";
+    $sql .= "WHERE id='" . $id . "' ";
+
+    $result_set = mysqli_query($db, $sql);
+    confirm_result_set($result_set);
+
+    $page = mysqli_fetch_assoc($result_set);
+    mysqli_free_result($result_set);
+    return $page;
+}
+
 
 function confirm_result_set($result_set) {
     if(!$result_set) {
