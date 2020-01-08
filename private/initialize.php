@@ -17,7 +17,7 @@ define('WWW_ROOT', $doc_root);
 
 require_once('functions.php');
 require_once('database.php');
-
+require_once('query_functions.php');
 //based on your requirement, putting it here means every page will have db connection
 
 $db = db_connect();

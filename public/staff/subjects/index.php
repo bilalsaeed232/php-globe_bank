@@ -1,6 +1,10 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
 <?php
+
+//get all subjects from mysql database;
+    $subjects_set = find_all_subjects();
+
     $subjects = [
         ['ID' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About Globe Bank'],
         ['ID' => '2', 'position' => '2', 'visible' => '2', 'menu_name' => 'Consumer'],
@@ -43,6 +47,11 @@
                 </tr>
             <?php } ?>
         </table>
+
+        <!-- done with using $subjects_set -->
+        <?php 
+            mysqli_free_result($subjects_set);
+        ?>
     </div>
 </div>
 
