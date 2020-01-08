@@ -1,13 +1,7 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
 <?php
-    $pages = [
-        ['ID' => '1', 'visible' => '1', 'title' => 'Home', 'content' => 'this is home page' ],
-        ['ID' => '2', 'visible' => '1', 'title' => 'About', 'content' => 'this is about page' ],
-        ['ID' => '3', 'visible' => '1', 'title' => 'Contact Us', 'content' => 'this is contact page' ],
-        ['ID' => '4', 'visible' => '1', 'title' => 'Products', 'content' => 'this is products page' ],
-        ['ID' => '5', 'visible' => '1', 'title' => 'FAQs', 'content' => 'this is faqs page' ]
-    ];
+    $pages = find_all_pages();
 ?>
 
 <?php $page_title = "Manage Pages" ?>
@@ -31,18 +25,22 @@
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
-            <?php foreach($pages as $page) { ?>
+            <?php while($page = mysqli_fetch_assoc($pages)) { ?>
             <tr>
-                <td><?php echo h($page['ID']); ?></td>
+                <td><?php echo h($page['id']); ?></td>
                 <td><?php echo h($page['visible']); ?></td>
-                <td><?php echo h($page['title']); ?></td>
+                <td><?php echo h($page['menu_name']); ?></td>
                 <td><?php echo h($page['content']); ?></td>
-                <td><a href="show.php?id=<?php echo h(u($page['ID'])); ?>" class="action">View</a></td>
-                <td><a href="edit.php?id=<?php echo h(u($page['ID'])); ?>" class="action">Edit</a></td>
+                <td><a href="show.php?id=<?php echo h(u($page['id'])); ?>" class="action">View</a></td>
+                <td><a href="edit.php?id=<?php echo h(u($page['id'])); ?>" class="action">Edit</a></td>
                 <td><a href="" class="action">Delete</a></td>
             </tr>
             <?php } ?>
         </table>
+        <!-- done with the data, now time to release database result set from memory -->
+        <?php 
+            mysqli_free_result($pages);
+        ?>
     </div>
 </div>
 
