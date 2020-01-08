@@ -1,0 +1,61 @@
+CREATE TABLE subjects (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	menu_name VARCHAR(255) NOT NULL,
+	visible TINYINT(1) NOT NULL DEFAULT 0,
+	position INT(3) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE pages (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	subject_id INT(11),
+	menu_name VARCHAR(255),
+	position INT(3),
+	visible TINYINT(1),
+	content TEXT,
+	PRIMARY KEY (id)
+);
+
+
+ALTER TABLE pages ADD INDEX fk_subject_id (subject_id);
+
+
+
+/* inserting records */
+
+INSERT INTO subjects (menu_name, visible, position)
+VALUES ('About Globe Bank', 1, 1);
+INSERT INTO subjects (menu_name, visible, position)
+VALUES ('Consumer', 1, 2);
+INSERT INTO subjects (menu_name, visible, position)
+VALUES ('Small Business', 1, 3);
+INSERT INTO subjects (menu_name, position)
+VALUES ('Marketing', 4);
+
+
+
+
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (1, 'Globe Bank', 1, 1);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (1, 'History', 1, 2);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (1, 'Leadership', 1, 3);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (1, 'Contact Us', 1, 4);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (2, 'Banking', 1, 1);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (2, 'Credit Cards', 1, 2);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (2, 'Mortgages', 1, 3);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (3, 'Checking', 1, 1);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (3, 'Loans', 1, 2);
+INSERT INTO pages (subject_id, menu_name, visible, position)
+VALUES (3, 'Merchant Services', 1, 3);
+
+
