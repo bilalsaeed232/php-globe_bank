@@ -1,5 +1,14 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
+<?php 
+    $result_set = find_all_subjects();
+
+    //+1 because we are creating a brand new subject
+    $subject_count = mysqli_num_rows($result_set) + 1;
+    mysqli_free_result($result_set);
+?>
+
+
 <?php $page_title = "New Subject"; ?>
 <?php include_once(SHARED_PATH . 'staff_header.php'); ?>
 
@@ -10,7 +19,13 @@
             <div>
                 <label for="position">Position</label>
                 <select name="position" id="position">
-                    <option value="1">1</option>
+                    <?php for($i = 1; $i <= $subject_count; $i++): ?>
+                        <option value="<?php echo $i; ?>"
+                            <?php echo $i == $subject_count ? "selected": ""; ?>
+                        >
+                            <?php echo $i; ?>
+                        </option>
+                    <?php endfor; ?>
                 </select>
             </div>
             <div>
