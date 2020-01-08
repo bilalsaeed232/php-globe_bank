@@ -34,8 +34,8 @@
                     <td><?php echo h($subject['position']); ?></td>
                     <td><?php echo $subject['visible'] ? 'Yes': 'No'; //as we are not outputing it directly no need for escaping ?></td>
                     <td><?php echo h($subject['menu_name']); ?></td>
-                    <td class="action"><a href="show.php?id=<?php echo h(u($subject['ID'])); ?>">View</a></td>
-                    <td class="action"><a href="edit.php?id=<?php echo h(u($subject['ID'])); ?>">Edit</a></td>
+                    <td class="action"><a href="show.php?id=<?php echo h(u($subject['id'])); ?>">View</a></td>
+                    <td class="action"><a href="edit.php?id=<?php echo h(u($subject['id'])); ?>">Edit</a></td>
                     <td class="action"><a href="">Delete</a></td>      
                 </tr>
             <?php } ?>
