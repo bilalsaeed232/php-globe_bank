@@ -2,19 +2,26 @@
 
 <?php 
 
-if(!isset($_GET['id'])) {
+
+//if id is not provided or it's not numeric
+if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     redirect_to(url_for('/staff/subjects/index.php'));
 }
 $id = $_GET['id'];
 
-$position = "";
-$visible = "";
-$menu_name = "";
+
 
 if(is_post_request()) {
-    $position = $_POST['position'];
-    $visible = $_POST['visible'];
-    $menu_name = $_POST['menu_name'];
+    $subject = [];
+    $subject['id'] = $id;
+    $subject['position'] = $_POST['position'];
+    $subject['visible'] = $_POST['visible'];
+    $subject['menu_name'] = $_POST['menu_name'];
+
+    $result = update_subject($subject);
+    redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
+} else {
+    $subject = find_subject_by_id($id);
 }
 
 ?>
@@ -36,11 +43,11 @@ if(is_post_request()) {
             <div>
                 <label for="visible">Visible</label>
                 <input type="hidden" name="visible" value="0">
-                <input type="checkbox" name="visible" id="visible" value="1" <?php echo $visible ? "checked" : ""; ?>>
+                <input type="checkbox" name="visible" id="visible" value="1" <?php echo $subject['visible'] ? "checked" : ""; ?>>
             </div>
             <div>
                 <label for="menu_name">Menu name</label>
-                <input type="text" name="menu_name" value="<?php echo $menu_name; ?>" >
+                <input type="text" name="menu_name" value="<?php echo $subject['menu_name']; ?>" >
             </div>
             <div>
                 <input type="submit" value="Edit Subject">
