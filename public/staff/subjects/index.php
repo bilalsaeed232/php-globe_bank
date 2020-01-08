@@ -4,13 +4,6 @@
 
 //get all subjects from mysql database;
     $subjects_set = find_all_subjects();
-
-    $subjects = [
-        ['ID' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About Globe Bank'],
-        ['ID' => '2', 'position' => '2', 'visible' => '2', 'menu_name' => 'Consumer'],
-        ['ID' => '3', 'position' => '3', 'visible' => '3', 'menu_name' => 'Small Business'],
-        ['ID' => '4', 'position' => '4', 'visible' => '4', 'menu_name' => 'Commercial']
-    ];
 ?>
 
 <?php $page_title = "Manage Subjects"; ?>
@@ -35,9 +28,9 @@
                 <th>&nbsp;</th>
             </tr>
 
-            <?php foreach($subjects as $subject) { ?>
+            <?php while($subject = mysqli_fetch_assoc($subjects_set)) { ?>
                 <tr>
-                    <td><?php echo h($subject['ID']); ?></td>
+                    <td><?php echo h($subject['id']); ?></td>
                     <td><?php echo h($subject['position']); ?></td>
                     <td><?php echo $subject['visible'] ? 'Yes': 'No'; //as we are not outputing it directly no need for escaping ?></td>
                     <td><?php echo h($subject['menu_name']); ?></td>
