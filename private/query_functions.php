@@ -14,8 +14,10 @@ function find_all_subjects() {
 function find_all_pages() {
     global $db;
 
-    $sql = "SELECT * FROM pages ";
-    $sql .= "ORDER BY subject_id, position ASC ";
+    $sql = "SELECT pages.*, subjects.menu_name AS subject_name FROM pages ";
+    $sql .= "JOIN subjects ";
+    $sql .= "ON subjects.id = pages.subject_id ";
+    $sql .= "ORDER BY pages.subject_id, pages.position ASC ";
 
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);

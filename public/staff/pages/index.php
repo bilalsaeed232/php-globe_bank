@@ -18,7 +18,7 @@
         <table class="list">
             <tr>
                 <th>ID</th>
-                <th>Subject ID</th>
+                <th>Subject Name</th>
                 <th>Position</th>
                 <th>Visible</th>
                 <th>Title</th>
@@ -30,7 +30,7 @@
             <?php while($page = mysqli_fetch_assoc($pages)) { ?>
             <tr>
                 <td><?php echo h($page['id']); ?></td>
-                <td><?php echo h($page['subject_id']); ?></td>
+                <td><?php echo h($page['subject_name']); ?></td>
                 <td><?php echo h($page['position']); ?></td>
                 <td><?php echo h($page['visible']); ?></td>
                 <td><?php echo h($page['menu_name']); ?></td>
