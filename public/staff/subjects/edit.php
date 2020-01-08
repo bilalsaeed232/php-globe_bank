@@ -1,14 +1,11 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
 <?php 
-
-
 //if id is not provided or it's not numeric
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     redirect_to(url_for('/staff/subjects/index.php'));
 }
 $id = $_GET['id'];
-
 
 
 if(is_post_request()) {
@@ -21,6 +18,10 @@ if(is_post_request()) {
     $result = update_subject($subject);
     redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
 } else {
+    $result_set = find_all_subjects();
+    $subject_count = mysqli_num_rows($result_set);
+    mysqli_free_result($result_set);
+
     $subject = find_subject_by_id($id);
 }
 
@@ -37,7 +38,14 @@ if(is_post_request()) {
             <div>
                 <label for="position">Position</label>
                 <select name="position" id="position">
-                    <option value="1">1</option>
+                <?php for ($i=1; $i <= $subject_count ; $i++): ?>
+                    <option value="<?php echo $i; ?>" 
+                        <?php 
+                            echo $i == $subject['position'] ? "selected": ""; 
+                        ?> >
+                        <?php echo $i; ?>
+                    </option>
+                <?php endfor; ?>
                 </select>
             </div>
             <div>
