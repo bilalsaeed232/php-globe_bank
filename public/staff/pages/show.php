@@ -20,6 +20,8 @@ $page = find_page_by_id($id);
     <h3>Menu Name: <?php echo $page['menu_name']; ?></h3>
     <h3>Position: <?php echo $page['position']; ?></h3>
     <h3>Visible: <?php echo $page['visible']; ?></h3>
+    <h3>Content:</h3>
+    <p><?php echo $page['content'] ?? "No Content!"; ?></p>
     <br>
     <a href="<?php echo url_for('staff/pages/index.php'); ?>">&laquo; Go Back</a>
 </div>

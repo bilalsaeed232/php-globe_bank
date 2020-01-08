@@ -84,7 +84,7 @@ function delete_subject($id) {
         return true;
     } else {
         // DELETE failed
-        mysqli_error($db);
+        echo mysqli_error($db);
         db_disconnect($db);
         exit;
     }
@@ -139,15 +139,38 @@ function insert_page($page) {
     if($result_set) {
         return true;
     } else {
-        mysqli_error();
+        echo mysqli_error();
         db_disconnect($db);
         exit;       
     }
  }
 
 
+function update_page($page) {
+    global $db;
 
- 
+    $sql = "UPDATE pages SET ";
+    $sql .="subject_id = '". $page['subject_id'] ."', ";
+    $sql .="menu_name = '". $page['menu_name'] ."', ";
+    $sql .="position = '". $page['position'] ."', ";
+    $sql .="visible = '". $page['visible'] ."', ";
+    $sql .="content = '". $page['content'] ."' ";
+    $sql .="WHERE id= '". $page['id'] ."' ";
+    $sql .="LIMIT 1";
+
+    $result = mysqli_query($db, $sql);
+    if($result) {
+        return true;
+    } else {
+        //UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
+
+
+
 function delete_page($id) {
     global $db;
 
@@ -159,7 +182,7 @@ function delete_page($id) {
         return true;
     } else {
         //DELETE failed
-        mysqli_error($db);
+        echo mysqli_error($db);
         db_disconnect($db);
         exit;
     }
