@@ -261,8 +261,15 @@ function validate_page($page) {
         $errors[] = "Position should be less than 999";
     }
 
+    //has unique page menu name
+    if(!has_unique_page_menu_name($page['menu_name'])) {
+        $errors[] = "Menu name already exists";
+    }
+
     return $errors;
 }
+
+
 
 
 function confirm_result_set($result_set) {

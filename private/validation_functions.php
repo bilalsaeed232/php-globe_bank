@@ -99,6 +99,22 @@ function has_valid_email_format($email) {
     return preg_match($email_regex, $value) === 1;
 }
 
+function has_unique_page_menu_name($menu_name) {
+    global $db;
+
+    $sql = "SELECT menu_name FROM pages ";
+    $sql .="WHERE menu_name = '" . $menu_name . "'";
+
+    $result_set = mysqli_query($db, $sql);
+    if(mysqli_num_rows($result_set)) {
+        //menu name already exists
+        return false;
+    }else {
+        //menu name doesn't exist
+        return true;
+    }
+}
+
 
 
 
