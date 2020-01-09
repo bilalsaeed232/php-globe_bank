@@ -2,13 +2,33 @@
 
 <?php
 
-    $subjects_set = find_all_subjects();
+
+if(is_post_request()) {
+    $page = [];
+    $page['subject_id'] = $_POST['subject_id'];
+    $page['menu_name'] = $_POST['menu_name'];
+    $page['position'] = $_POST['position'];
+    $page['visible'] = $_POST['visible'];
+    $page['content'] = $_POST['content'];
+
+    $result = insert_page($page);
+    if($result === true) {
+        //success
+        redirect_to(url_for('/staff/pages/index.php'));
+    } else {
+        // validation failed
+        $errors = $result;
+    }
+
+}
+
+$subjects_set = find_all_subjects();
 
 
-    $result_set = find_all_pages();
-    //+1 because we are creating a new page
-    $page_count = mysqli_num_rows($result_set) + 1;
-    mysqli_free_result($result_set);
+$result_set = find_all_pages();
+//+1 because we are creating a new page
+$page_count = mysqli_num_rows($result_set) + 1;
+mysqli_free_result($result_set);
 ?>
 
 
@@ -19,7 +39,8 @@
 <div id="content">
     <h1>New Page</h1>
     <div class="page new">
-        <form action="<?php echo url_for('/staff/pages/create.php'); ?>" method="post">
+        <?php echo display_errors($errors); ?>
+        <form action="<?php echo url_for('/staff/pages/new.php'); ?>" method="post">
             <div>
                 <label for="menu_name">Menu Name</label>
                 <input type="text" name="menu_name" />

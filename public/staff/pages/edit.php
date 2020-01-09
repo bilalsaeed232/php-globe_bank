@@ -20,16 +20,24 @@ if(is_post_request()) {
 
 
     $result = update_page($page);
-    redirect_to(url_for('/staff/pages/show.php?id=' . $page['id']));
+
+    if($result === true) {
+        redirect_to(url_for('/staff/pages/show.php?id=' . $page['id']));
+    } else {
+        //validations failed
+        $errors = $result;
+    }
+
 } else {
     $page = find_page_by_id($id);
-    $pages_result = find_all_pages();
-    $page_count = mysqli_num_rows($pages_result);
-    mysqli_free_result($pages_result);
-
-    //get all subjects as well
-    $subjects_set = find_all_subjects();
 }
+
+$pages_result = find_all_pages();
+$page_count = mysqli_num_rows($pages_result);
+mysqli_free_result($pages_result);
+
+//get all subjects as well
+$subjects_set = find_all_subjects();
 
 ?>
 
@@ -40,6 +48,7 @@ if(is_post_request()) {
 <div id="content">
     <h1>Edit Page</h1>
     <div class="page edit">
+        <?php echo display_errors($errors); ?>
         <form action="<?php echo url_for('/staff/pages/edit.php?id=' . h($page['id']) ) ?>" method="post">
             <div>
                 <label for="menu_name">Menu Name</label>

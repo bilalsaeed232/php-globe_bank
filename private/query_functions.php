@@ -165,6 +165,11 @@ function find_page_by_id($id){
 function insert_page($page) {
     global $db;
 
+    $errors = validate_page($page);
+    if(!empty($errors)) {
+        return $errors;
+    }
+
     $sql = "INSERT INTO pages (subject_id, menu_name, position, visible, content) ";
     $sql .= "VALUES (";
     $sql .= "'" . $page['subject_id'] . "', ";
@@ -189,6 +194,11 @@ function insert_page($page) {
 function update_page($page) {
     global $db;
 
+    $errors = validate_page($page);
+    if(!empty($errors)) {
+        return $errors;
+    }
+
     $sql = "UPDATE pages SET ";
     $sql .="subject_id = '". $page['subject_id'] ."', ";
     $sql .="menu_name = '". $page['menu_name'] ."', ";
@@ -209,8 +219,6 @@ function update_page($page) {
     }
 }
 
-
-
 function delete_page($id) {
     global $db;
 
@@ -227,7 +235,36 @@ function delete_page($id) {
         exit;
     }
 }
- 
+
+function validate_page($page) {
+    $errors = [];
+
+    //menu_name
+    if(is_blank($page['menu_name'])) {
+        $errors[] = "Menu name cannot be empty"; 
+    }
+    if(!has_length($page['menu_name'], ['min' => 2, 'max' => 255])) {
+        $errors[] = "Menu name should be between 2 to 255 characters";
+    }
+
+    //visible
+    $visible = (string) $page['visible'];
+    if(!has_inclusion_of($visible, ['0','1'])) {
+        $errors[] = "Visible should be either true or false";
+    }
+
+    //position
+    $position = (int) $page['position'];
+    if($position <= 0) {
+        $errors[] = "Position should be greater than 0";
+    } else if($position >= 999) {
+        $errors[] = "Position should be less than 999";
+    }
+
+    return $errors;
+}
+
+
 function confirm_result_set($result_set) {
      if(!$result_set) {
          exit("Error executing query!");
