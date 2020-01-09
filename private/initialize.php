@@ -22,6 +22,6 @@ require_once('validation_functions.php');
 //based on your requirement, putting it here means every page will have db connection
 
 $db = db_connect();
-
+$errors = []; //so that we don't have to initialize it on every form page
 
 ?>

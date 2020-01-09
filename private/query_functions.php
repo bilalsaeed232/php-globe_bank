@@ -27,7 +27,13 @@ function find_subject_by_id($id) {
 
 function insert_subject($subject) {
     global $db;
-    
+
+    $errors = validate_subject($subject);
+    if(!empty($errors)) {
+        return $errors;
+    }
+
+
     $sql = "INSERT INTO subjects (menu_name, visible, position) ";
     $sql .= "VALUES (";
     $sql .= "'" . $subject['menu_name'] . "', ";
@@ -38,8 +44,7 @@ function insert_subject($subject) {
     $result = mysqli_query($db, $sql);
 
     if($result) {
-        $insert_id = mysqli_insert_id($db);
-        return $insert_id;
+        return true;
     } else {
         //INSERT failed
         echo mysqli_error($db);
@@ -51,6 +56,11 @@ function insert_subject($subject) {
 
 function update_subject($subject) {
     global $db;
+
+    $errors = validate_subject($subject);
+    if(!empty($errors)) {
+        return $errors;
+    }
 
     $sql = "UPDATE subjects SET ";
     $sql .= "menu_name = '". $subject['menu_name'] . "', ";
@@ -90,6 +100,36 @@ function delete_subject($id) {
     }
 }
 
+function validate_subject($subject) {
+    $errors = [];
+
+    //menu_name
+    if(is_blank($subject['menu_name'])) {
+        $errors[] = 'Menu name cannot be blank.';
+    }
+    if(!has_length($subject['menu_name'], ['min' => 2, 'max' => 255])) {
+        $errors[] = 'Menu name should be between 2 to 255 characters';
+    }
+
+
+    //position
+    $position = (int) $subject['position'];
+    if($position <= 0) {
+        $errors[] = "Position must be greater than zero";
+    }
+    if($position >= 999) {
+        $errors[] = "Position must be less than 999";
+    }
+
+
+    //visible
+    $visible = (string) $subject['visible'];
+    if(!has_inclusion_of($visible, ["0", "1"])) {
+        $errors[] = "Visible must be true or false";
+    }
+
+     return $errors;
+}
 
 
 

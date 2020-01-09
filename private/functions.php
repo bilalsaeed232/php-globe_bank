@@ -45,4 +45,21 @@ function is_post_request() {
 }
 
 
+function display_errors($errors = []) {
+    $output = '';
+    if(!empty($errors)) {
+        $output .= "<div class='errors'>";
+        $output .= "<p>Please fix the following errors:</p>";
+        $output .= "<ul>";
+        foreach($errors as $error) {
+            //as errors might contain data from user, so use h()
+            $output .= "<li>". h($error) ."</li>";
+        }
+        $output .= "</div>";
+    }
+
+    return $output;
+}
+
+
 ?>
